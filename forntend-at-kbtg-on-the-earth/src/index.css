@@ -1,7 +1,5 @@
-/* Tailwind base, components, utilities */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Import Tailwind via the @tailwindcss/vite plugin */
+@import "tailwindcss";
 
 /* --- Preserve existing custom project styles below --- */
 :root {

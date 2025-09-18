@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<body>
+<h1>Login</h1>
+<input id="email" placeholder="email" />
+<input id="password" type="password" placeholder="password" />
+<button onclick="login()">Login</button>
+<pre id="out"></pre>
+<button onclick="callProtected()">Call Protected</button>
+<script>
+let token=''
+async function login(){
+  const res = await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value,password:document.getElementById('password').value})});
+  const j = await res.json();
+  token = j.token
+  document.getElementById('out').innerText = JSON.stringify(j,null,2);
+}
+async function callProtected(){
+  const res = await fetch('/protected',{headers:{'Authorization':'Bearer '+token}})
+  document.getElementById('out').innerText = await res.text()
+}
+</script>
+</body>
+</html>

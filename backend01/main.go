@@ -10,8 +10,14 @@ func main() {
 	// Initialize database
 	InitDB()
 
+	// Serve login page at root
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{"message": "hello world"})
+		return c.SendFile("./static/login.html")
+	})
+
+	// Health endpoint
+	app.Get("/health", func(c *fiber.Ctx) error {
+		return c.JSON(fiber.Map{"status": "ok"})
 	})
 
 	app.Post("/register", Register)

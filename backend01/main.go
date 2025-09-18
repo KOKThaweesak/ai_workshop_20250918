@@ -23,6 +23,7 @@ func main() {
 	app.Post("/register", Register)
 	app.Post("/login", Login)
 	app.Get("/protected", JWTMiddleware(), Protected)
+	app.Put("/profile", JWTMiddleware(), UpdateProfile)
 
 	// Serve static test pages and swagger
 	app.Static("/static", "./static")
